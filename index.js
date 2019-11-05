@@ -14,14 +14,14 @@ const httpPort = 4500;
 
 var dev = false;
 
-const originChecker = (req, res, next) => {
+/**const originChecker = (req, res, next) => {
   var origin = req.headers.origin ? req.headers.origin : req.headers.referer.substring(0, 'https://spenger.club'.length);
 
-  if ((!origin || (origin != 'https://spenger.club' && origin != 'http://localhost:4500'))) {
+  if ((!origin || (origin != 'https://' && origin != 'http://localhost:4500'))) {
     logger.info('Declining request from bad origin: ' + origin);
     res.status(400).end('Bad Request');
   } else next();
-}
+}**/
 
 const jsonParser = bodyParser.json();
 
