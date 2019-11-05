@@ -7,6 +7,8 @@
 
 # dependencies
 /node_modules
+/public
+/spengergasse-frontend
 
 # IDEs and editors
 /.idea

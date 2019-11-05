@@ -17,7 +17,7 @@ var dev = false;
 const originChecker = (req, res, next) => {
   var origin = req.headers.origin ? req.headers.origin : req.headers.referer.substring(0, 'https://spenger.club'.length);
 
-  if ((!origin || (origin != 'https://spenger.club' && origin != 'http://localhost:5000'))) {
+  if ((!origin || (origin != 'https://spenger.club' && origin != 'http://localhost:4500'))) {
     logger.info('Declining request from bad origin: ' + origin);
     res.status(400).end('Bad Request');
   } else next();
@@ -48,12 +48,11 @@ function init() {
 
 function setupExpress() {
   // app.use(minify());
-  app.use(express.static('/home/trailerpark/spengerclub/static'));
+  app.use(express.static('./public'));
 
-  app.get('*', (req, res) => {
-    // res.end('Hello Worlderino! Auto deploy works!!');
-    res.sendFile('/home/trailerpark/spengerclub/static/index.html');
-  });
+  app.get('/*', function(req, res, next) {
+    res.sendFile('./public/index.html', { root: __dirname });
+});
 }
 
 function setupWinston() {
